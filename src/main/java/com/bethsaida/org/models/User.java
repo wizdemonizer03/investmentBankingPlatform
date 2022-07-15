@@ -51,9 +51,7 @@ public class User {
     
     private boolean isEnabled ;
     
-    private boolean isLocked;
-    
-    @Column(unique=true)
+   @Column(unique=true)
 	private String email;
 	
 	private BigDecimal target;
@@ -152,15 +150,6 @@ public class User {
 		this.isEnabled = isEnabled;
 	}
 	
-	
-	public boolean isLocked() {
-		return isLocked;
-	}
-
-	public void setLocked(boolean isLocked) {
-		this.isLocked = isLocked;
-	}
-
 	public String getEmail() {
 		return email;
 	}

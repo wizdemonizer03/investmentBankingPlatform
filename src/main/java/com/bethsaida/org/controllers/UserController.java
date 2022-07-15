@@ -130,12 +130,6 @@ public class UserController {
 	     userAccountService.restrictUser(id);
 	     }
 	     
-	     @PutMapping(value = "/lockUser/{id}")
-	     public void lockUser(@PathVariable Long id) {
-	     userAccountService.lockUser(id);
-	     } 
-	     
-	     
 	     @DeleteMapping(value="/deleteUser/{id}")
 	     public void deleteUser(@PathVariable Long id){
 	     userAccountService.deleteUser(id);
@@ -218,10 +212,7 @@ public class UserController {
 	     return marketersTotal;
 	     }
 	     
-//	     @GetMapping(value="/managerEmail")
-//	     public List<String> getManagerEmail() {
-//	     return userAccountService.findManagerEmail();
-//	     }
+
 	     
 	
     }

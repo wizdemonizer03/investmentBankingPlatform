@@ -3,13 +3,17 @@ package com.bethsaida.org.models;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -30,7 +34,9 @@ public class Beneficiary {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
     
-    @OneToOne(mappedBy = "beneficiary")
+    @JsonBackReference
+    @ManyToOne(targetEntity = Customer.class,  fetch = FetchType.LAZY )
+    @JoinColumn(name="customer_id") 
     private Customer customer;
     
     

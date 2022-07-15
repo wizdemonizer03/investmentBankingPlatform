@@ -501,6 +501,19 @@ public class InvestmentService {
    public BigDecimal totalWeeklyInvestmentMaturing() {
    return investmentRepository.totalWeeklyMaturingInvestment();
    }
+   
+   public Long totalweeklyMarketerMaturingInvestment(User marketer) {
+   return investmentRepository.totalWeeklyMarketerMaturingInvestment(marketer);
+   }
+   
+   public List<Investment> weeklyMaturingInvestment(){
+   return investmentRepository.weeklyMaturingInvestment();
+   }
+   
+   
+   public List<Investment> weeklyMarketerMaturingInvestmentt(User marketer){
+   return investmentRepository.weeklyMaturingMarketerInvestment(marketer);
+   }
 
    @SuppressWarnings("serial")
    public List<Investment> findInvestmentByParameter(LocalDate startDate, LocalDate endDate, Integer accountNumber,

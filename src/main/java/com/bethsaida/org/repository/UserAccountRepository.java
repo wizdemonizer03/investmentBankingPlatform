@@ -92,8 +92,5 @@ public interface UserAccountRepository extends JpaRepository <User, Long>  {
 	 @Query("update User user SET user.isEnabled = 0 WHERE user.id = ?1")
 	 public void restrictUser(Long id);
 	 
-	 @Modifying
-	 @Transactional
-	 @Query("update User user SET user.isLocked = 1 WHERE user.id = ?1")
-	 public void lockUser(Long id);
+	
 }

@@ -60,6 +60,9 @@ public interface InvestmentRepository extends JpaRepository <Investment, Long>, 
 			+ "investment.customer_id.marketer marketer where marketer = :marketer")
     Page<Investment> findByMarketer(User marketer, Pageable pageable);
 	
+	
+	
+	
 	@Query("SELECT SUM(investment.principal) as "
 			+ "total_principal from "
 			+ "Investment investment join investment.customer_id.marketer "
@@ -113,6 +116,17 @@ public interface InvestmentRepository extends JpaRepository <Investment, Long>, 
 	
 	@Query("select COUNT(investment) from Investment investment WHERE YEARWEEK(maturityDate) = YEARWEEK(NOW())")
 	BigDecimal totalWeeklyMaturingInvestment();
+	
+	@Query("select COUNT(investment) from Investment investment JOIN investment.customer_id.marketer marketer "
+			+ "ON marketer_id = :marketer WHERE YEARWEEK(maturityDate) = YEARWEEK(NOW())")
+	Long totalWeeklyMarketerMaturingInvestment(User marketer);
+	
+	@Query("select investment from Investment investment WHERE YEARWEEK(maturityDate) = YEARWEEK(NOW())")
+	List<Investment> weeklyMaturingInvestment();
+	
+	@Query("select investment from Investment investment JOIN investment.customer_id.marketer marketer "
+			+ "ON marketer_id = :marketer WHERE YEARWEEK(maturityDate) = YEARWEEK(NOW())")
+	List<Investment> weeklyMaturingMarketerInvestment(User marketer);
 
 	Page<Investment> findAllByOrderByIdDesc(Pageable pageable);
 	

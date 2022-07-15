@@ -105,10 +105,6 @@ public class UserAccountService {
         userRepository.restrictUser(id);
         }
         
-        public void lockUser(Long id) {
-        userRepository.lockUser(id);
-        }
-        
         public User getOneUser(Long id) {
         return userRepository.getById(id);
         }

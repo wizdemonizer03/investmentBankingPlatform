@@ -48,19 +48,22 @@ public class Customer  {
 	private String bankAccountNumber ;	
 	
 	
-	@OneToOne (cascade = CascadeType.ALL)
-	@JoinColumn(name="beneficiary_id", referencedColumnName = "id" )
-	private Beneficiary beneficiary;
+	@JsonManagedReference
+	//@JsonBackReference
+	@OneToMany (mappedBy= "customer", cascade = CascadeType.ALL, targetEntity=Beneficiary.class)
+	private List <Beneficiary> beneficiary;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date registrationDate;
+	
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(targetEntity = User.class, 
 	 fetch = FetchType.LAZY )
 	@JoinColumn(name="marketer_id") 
 	private User marketer ;
+	
 	@JsonBackReference
 	@OneToMany(mappedBy="customer_id",cascade = CascadeType.ALL, targetEntity=Investment.class)
 	private List<Investment> investment;
@@ -85,7 +88,7 @@ public class Customer  {
     public Customer(Long id, String userName, String password, String firstName, String lastName, String gender,
 			String address, String maritalStatus, String category, String motherMaidenName, String idType,
 			String idNumber, String phoneNumber, String email, String formFile, String docFile, String additionalImage,
-			String bankName, String bankAccountNumber, Beneficiary beneficiary, Date dateOfBirth, Date registrationDate,
+			String bankName, String bankAccountNumber, List<Beneficiary> beneficiary, Date dateOfBirth, Date registrationDate,
 			User marketer, List<Investment> investment, Set<UserRole> customerRole) {
 		super();
 		this.id = id;
@@ -267,11 +270,11 @@ public class Customer  {
 		this.bankAccountNumber = bankAccountNumber;
 	}
 
-	public Beneficiary getBeneficiary() {
+	public List <Beneficiary> getBeneficiary() {
 		return beneficiary;
 	}
 
-	public void setBeneficiary(Beneficiary beneficiary) {
+	public void setBeneficiary(List <Beneficiary> beneficiary) {
 		this.beneficiary = beneficiary;
 	}
 
@@ -329,5 +332,4 @@ public class Customer  {
 
 	
 
-	
 	}

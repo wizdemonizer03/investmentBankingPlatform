@@ -24,14 +24,13 @@ public class MyUserDetails implements UserDetails {
 	private String password;
 	private String email;
 	private boolean isEnabled;
-    private boolean isLocked;
-	private Collection<? extends GrantedAuthority> authorities;
+    private Collection<? extends GrantedAuthority> authorities;
 	
 	public MyUserDetails () {
 		
 	}
 	
-    public MyUserDetails(Long id, String username, String email, String password, Collection<? extends GrantedAuthority> authorities, boolean isEnabled, boolean isLocked) 
+    public MyUserDetails(Long id, String username, String email, String password, Collection<? extends GrantedAuthority> authorities, boolean isEnabled) 
 	
 	{
 		this.id = id;
@@ -40,7 +39,7 @@ public class MyUserDetails implements UserDetails {
 		this.password = password;
 		this.authorities = authorities;
 		this.isEnabled = isEnabled;
-		this.isLocked = isLocked;
+		
 	}
     
     
@@ -57,8 +56,7 @@ public class MyUserDetails implements UserDetails {
 				user.getEmail(),
 				user.getPassword(),
 				authorities,
-				user.isEnabled(),
-				user.isLocked());
+				user.isEnabled());
 	}
 	
 	@Override
@@ -97,11 +95,8 @@ public class MyUserDetails implements UserDetails {
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
-		if(this.isLocked == true) {
-			return false;
-		} else {
-		return true;
-		}
+	return true;
+		
 	}
 
 	@Override

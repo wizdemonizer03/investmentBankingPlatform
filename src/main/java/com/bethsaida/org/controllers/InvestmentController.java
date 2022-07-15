@@ -270,6 +270,25 @@ public class InvestmentController {
     return investmentService.totalWeeklyInvestmentMaturing();
     } 
     
+    @GetMapping(value="/weeklyMaturingInvestments")
+    public List<Investment> weeklyMaturingInvestments(){
+    return investmentService.weeklyMaturingInvestment();
+    }
+    
+    @GetMapping(value="/weeklyTotalMarketerMaturingInvestment")
+    public Long marketerWeeklyMaturingInvestment() {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    User loggedInUser = userRepo.findByUserName(authentication.getName());
+    return investmentService.totalweeklyMarketerMaturingInvestment(loggedInUser);
+    }
+    
+    @GetMapping(value="/weeklyListMarketerMaturingInvestment")
+    public List<Investment> getMarketerWeeklyMaturingInvestment(){
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    User loggedInUser = userRepo.findByUserName(authentication.getName());
+    return investmentService.weeklyMarketerMaturingInvestmentt(loggedInUser);
+    }
+    
     @GetMapping(value="/marketerTotalPrincipal")
     public BigDecimal getMarketerTotalPrincipal(){
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();	

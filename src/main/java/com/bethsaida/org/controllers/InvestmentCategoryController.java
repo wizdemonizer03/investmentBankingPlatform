@@ -3,15 +3,19 @@ package com.bethsaida.org.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bethsaida.org.models.InvestmentCategory;
 import com.bethsaida.org.service.InvestmentCategoryService;
 
+@CrossOrigin()
 @RestController
 public class InvestmentCategoryController {
 	
@@ -24,7 +28,7 @@ public class InvestmentCategoryController {
 	}
 	
 	@PostMapping(value = "/createCategory")
-	public InvestmentCategory createCategory(InvestmentCategory category) {
+	public @ResponseBody InvestmentCategory createCategory(@RequestBody InvestmentCategory category) {
 	return categoryService.createCategory(category);
 	}
 	
